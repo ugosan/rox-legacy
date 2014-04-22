@@ -1,0 +1,95 @@
+about.author = Ugo Braga Sangiorgi - ugorox@ig.com.br - icq# 100577507
+about.GPL = GNU General Public License. Leia atentamente
+about.text=Rox é uma ferramenta para o auxílio no aprendizado de Teoria dos Grafos
+about.title=Sobre - mais informações: http://www.ugorox.kit.net
+
+
+analysis.cantexecute= Impossível executar análise
+analysis.compile= Compilar Análises
+analysis.length= Executada em:
+analysis.noresult= A análise não retornou resultados
+analysis.loading= Carregando Análises
+
+compile.alldone= Todas as análises foram compiladas
+compile.compiled= Análise compilada
+compile.compiling= Compilando:
+compile.error= Ocorreram erros, compilação interrompida
+compile.init = Iniciando compilação de análises...
+
+
+error.analysis.title=Erro na análise
+error.analysis=Analise gerou um Erro:
+error.cantfindgpl=Nao foi possivel encontrar a licensa gpl.txt na pasta raiz.\n Ela e muito importante para que voce entenda os direitos e deveres ao usar, copiar ou distribuir o Rox.\nSaindo...
+error.fileread=Nao foi possível ler o arquivo
+error.filewrite=Nao foi possível gravar o arquivo
+error.name=Erro
+
+
+file.open.name = Abrir
+file.open.title=Abrir Grafo
+file.save.name = Salvar
+file.save.title=Salvar Grafo
+
+graph= Grafo
+digraph= Digrafo
+
+input.title=Entrada de dados
+
+menu.1.1=Novo Grafo
+menu.1.2=Novo Digrafo
+menu.1.3=Abrir
+menu.1.4=Salvar
+menu.1.5=Obter Grafo Randômico
+menu.1.6=Sai!
+menu.1=Grafo
+menu.2.1=Atualizar
+menu.2=Analises
+menu.3.1=Mostrar Matrizes no Painel
+menu.3.2=Mostrar TDQ (tempo de 1 quadro)
+menu.3.3=Ativar Otimizacao Gráfica (melhor movimento)
+menu.3=Opções
+menu.4.1=Rox
+menu.4=Sobre
+
+msg.0=Rox Iniciado
+msg.1=Adicionar um Vertice
+msg.10=Remove todas as cores do Grafo
+msg.2=Remover um Vertice
+msg.3=Adicionar uma Aresta
+msg.4=Remover uma Aresta
+msg.5=Mover um vértice (Você também pode mover segurando Ctrl)
+msg.6=Obter Grafo Aleatório
+msg.7=Atualizar todas as analises e executar novamente a última análise
+msg.8=Colorir um Vértice
+msg.9=Colorir uma Aresta
+msg.compiler.init = Iniciando compilação de análises
+msg.help.1=Adicionando Vértices - Clique em qualquer ponto
+msg.help.2=Clique nos Vertices desejados para removê-los
+msg.help.3=Clique em um vertice e arraste
+msg.help.4=Clique nos Vertices desejados para colori-los
+
+out.failed= Falha ao finalizar
+
+roxpanel.adjacence=Matriz de Adjacencias
+roxpanel.incidence=Matriz de Incidencias
+roxpanel.miliseconds=milisegundos
+
+splash.text.0=Carregando...
+splash.text.10=Montando menus padrão
+splash.text.100=Configurando Barra de Ferramentas (adicionando monitores de acao: Mover Vértice)
+splash.text.110=Adicionando Monitores de Ação geral
+splash.text.120=Preparando Ambiente
+splash.text.20=Montando menus de análises
+splash.text.30=Configurando Barra de Ferramentas
+splash.text.40=Configurando Barra de Ferramentas (adicionando monitores de Ação)
+splash.text.50=Configurando Barra de Ferramentas (adicionando monitores de acao: Adicionar Vértice)
+splash.text.60=Configurando Barra de Ferramentas (adicionando monitores de acao: Remover Vértice)
+splash.text.70=Configurando Barra de Ferramentas (adicionando monitores de acao: Adicionar Aresta)
+splash.text.80=Configurando Barra de Ferramentas (adicionando monitores de acao: Remover Aresta)
+splash.text.90=Configurando Barra de Ferramentas (adicionando monitores de acao: Grafo Random)
+
+tabbedpane.1=Painel
+tabbedpane.2=Matrizes
+tabbedpane.3=Log
+
+toolbar.name = Barra de Ferramentas

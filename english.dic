@@ -1,0 +1,94 @@
+about.author = Ugo Braga Sangiorgi - ugorox@ig.com.br - icq# 100577507
+about.GPL = GNU General Public License. Read the terms carefully
+about.text=Rox its a tool that helps learning Graph Theory
+about.title=About - see http://www.ugorox.kit.net for further informations
+
+
+analysis.cantexecute= Cant perform analysis
+analysis.compile= Build Analysis
+analysis.length= Performed in:
+analysis.noresult=This analysis didnt returned any results
+analysis.loading= Loading Analysis
+
+compile.alldone= All analysis were sucessful compiled
+compile.compiled= Analysis compiled
+compile.compiling= Compiling:
+compile.error= Compile failed, see error output
+compile.init = Starting analysis compilation...
+
+
+error.analysis.title=Analysis error
+error.analysis=This analysis generated an error
+error.cantfindgpl=It was not possible to find the license gpl.txt at the main directory.\nThat license is needed to you to understand your rights and dutyies when using, copying or distributing Rox. \nQuitting...
+error.fileread=Error reading the file
+error.filewrite=Error writing the file
+error.name=Error
+
+file.open.name = Open
+file.open.title=Open Graph
+file.save.name = Save
+file.save.title=Save Graph
+
+graph= Graph
+digraph= Digraph
+
+input.title=Data Input
+
+menu.1.1=New Graph
+menu.1.2=New Dygraph
+menu.1.3=Open
+menu.1.4=Save
+menu.1.5=Get Random Graph
+menu.1.6=Exit
+menu.1=Graph
+menu.2.1=Refresh
+menu.2=Analysis
+menu.3.1=Show Matrixes at Panel
+menu.3.2=Show FT (Frame Time)
+menu.3.3=Activate Graphics Optimizing (better moving)
+menu.3=Options
+menu.4.1=Rox
+menu.4=About
+
+msg.0=Rox Started
+msg.1=Add a Node
+msg.10=Clear all colors from Graph
+msg.2=Delete a Node
+msg.3=Add a Edge
+msg.4=Delete a Edge
+msg.5=Move Node (You can move either holding Ctrl key)
+msg.6=New Random Graph
+msg.7=Refresh all analysis and perform last one
+msg.8=Add a color to a Node
+msg.9=Add a color to a Edge
+msg.compiler.init = Compiling analysis
+msg.help.1=Adding Nodes, click any point
+msg.help.2=Click at the Nodes you want to remove
+msg.help.3=Click at a Node and drag it
+msg.help.4=Click at the Nodes you want to colour
+
+out.failed= Finalizing process failed
+
+roxpanel.adjacence=Adjacences
+roxpanel.incidence=Incidences
+roxpanel.miliseconds=miliseconds
+
+splash.text.0=Loading...
+splash.text.10=Building Default Menus
+splash.text.100=Setting up Toolbar (adding Action Listeners: Move Node)
+splash.text.110=Adding Global Action Listeners
+splash.text.120=Setting up Enviroment
+splash.text.20=Building Analysis Menu
+splash.text.30=Setting up Toolbar
+splash.text.40=Setting up Toolbar (adding Action Listeners)
+splash.text.50=Setting up Toolbar (adding Action Listeners: Add Node)
+splash.text.60=Setting up Toolbar (adding Action Listeners: Delete Node)
+splash.text.70=Setting up Toolbar (adding Action Listeners: Add Edge)
+splash.text.80=Setting up Toolbar (adding Action Listeners: Delete Edge)
+splash.text.90=Setting up Toolbar (adding Action Listeners: Random Graph)
+
+tabbedpane.1=Pane
+tabbedpane.2=Matrixes
+tabbedpane.3=Log
+
+toolbar.name = Tool Bar

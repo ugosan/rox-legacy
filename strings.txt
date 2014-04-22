@@ -1,0 +1,2 @@
+Rox_074.zip=Rox 0.74#Distribuição atual do Rox (recomendado java 1.4.2) <br>Contém uma pasta com todos os arquivos necessários, veja o manual na seção documentação. <br>Acompanham códigos-fonte e GNU General Public License
+fontes[Rox_074].zip=Códigos-Fonte#Fontes da versao atual <br>Acompanha GNU General Public License
