@@ -8,7 +8,10 @@ package org.ugosan.rox;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
+import org.ugosan.rox.dialogs.EditNodeTextField;
 
 public class RoxPopupMenu extends JPopupMenu implements KeyListener{
 
@@ -39,7 +42,7 @@ public class RoxPopupMenu extends JPopupMenu implements KeyListener{
 
             if(e.getSource().getClass().equals(Class.forName("ugo.rox.RoxVerticeTextField"))){
 
-                RoxVerticeTextField t = (RoxVerticeTextField)e.getSource();
+                EditNodeTextField t = (EditNodeTextField)e.getSource();
                 String texto = t.getText();
 
                 if(e.getKeyCode()==e.VK_BACK_SPACE){
@@ -50,7 +53,7 @@ public class RoxPopupMenu extends JPopupMenu implements KeyListener{
                     texto += e.getKeyChar();
                     t.setRotulo(texto.trim());
                 }
-                Rox.getInstance().repaint();
+                Main.getInstance().repaint();
 
             }
             }catch(Exception ex){}

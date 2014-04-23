@@ -3,7 +3,7 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.dialogs;
 
 
 
@@ -19,12 +19,12 @@ import java.io.File;
  *  Componente usado apenas para atribuir o rótulo ao Vértice.
  * @author Ugo Braga Sangiorgi
  **/
-public class RoxVerticeTextField extends JTextField {
+public class EditNodeTextField extends JTextField {
 
     Vertice vertice; //o vertice relativo ao popup
     String rotulo;
 
-    public RoxVerticeTextField(Vertice v){
+    public EditNodeTextField(Vertice v){
         super();
         this.vertice = v;
         rotulo = v.getRotulo();

@@ -3,7 +3,7 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.dialogs;
 
 /**
  *  Dialog de informações
@@ -11,10 +11,14 @@ package org.ugosan.rox;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
+import org.ugosan.rox.Main;
+
 import java.io.*;
 
-public class RoxSobreDialog extends JFrame implements ActionListener{
+public class AboutDialog extends JFrame implements ActionListener{
     JLabel label_1;
     JLabel label_2;
     JTextArea textarea_1;
@@ -23,15 +27,15 @@ public class RoxSobreDialog extends JFrame implements ActionListener{
     JLabel label_3;
     JLabel label_4;
 
-    public RoxSobreDialog(){
+    public AboutDialog(){
         RoxSobreDialogLayout customLayout = new RoxSobreDialogLayout();
 
         getContentPane().setLayout(customLayout);
 
-        label_1 = new JLabel(Rox.versao+" Copyright (C) 2003 - Ugo Braga Sangiorgi - http://www.mycgiserver.com/~ugosan/rox");
+        label_1 = new JLabel(Main.versao+" Copyright (C) 2003 - Ugo Braga Sangiorgi - http://www.mycgiserver.com/~ugosan/rox");
         getContentPane().add(label_1);
 
-        label_2 = new JLabel(Rox.p.getProperty("about.text"));
+        label_2 = new JLabel(Main.p.getProperty("about.text"));
         getContentPane().add(label_2);
 
         textarea_1 = new JTextArea("");
@@ -46,16 +50,16 @@ public class RoxSobreDialog extends JFrame implements ActionListener{
          button_ok.addActionListener(this);
         getContentPane().add(button_ok);
 
-        label_3 = new JLabel(Rox.p.getProperty("about.GPL"));
+        label_3 = new JLabel(Main.p.getProperty("about.GPL"));
         getContentPane().add(label_3);
 
-        label_4 = new JLabel(Rox.p.getProperty("about.author"));
+        label_4 = new JLabel(Main.p.getProperty("about.author"));
         getContentPane().add(label_4);
 
         setSize(getPreferredSize());
         setResizable(false);
-        this.setIconImage(Rox.getInstance().getIconImage());
-        setTitle(Rox.p.getProperty("about.title"));
+        this.setIconImage(Main.getInstance().getIconImage());
+        setTitle(Main.p.getProperty("about.title"));
 
 
         addWindowListener(new WindowAdapter() {
@@ -78,8 +82,8 @@ public class RoxSobreDialog extends JFrame implements ActionListener{
 
 
         }catch(FileNotFoundException e){
-            System.setOut(Rox.defaultPrintStream);
-            System.out.println(Rox.p.getProperty("error.cantfindgpl"));
+            System.setOut(Main.defaultPrintStream);
+            System.out.println(Main.p.getProperty("error.cantfindgpl"));
             System.exit(1);
 
         }catch(Exception ex){

@@ -3,13 +3,16 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.splashscreen;
 
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
+
 import javax.swing.*;
 import javax.imageio.*;
+
+import org.ugosan.rox.Main;
 
 public class RoxSplashPanel extends JPanel{
     String[] quadros = {"img"+File.separator+"q10.gif",
@@ -49,7 +52,7 @@ public class RoxSplashPanel extends JPanel{
 
         g.setColor(Color.DARK_GRAY);
         g.drawImage(quadroBase,0,0,null);
-        g.drawString(Rox.versao.substring(Rox.versao.indexOf(" ")),195,74);
+        g.drawString(Main.versao.substring(Main.versao.indexOf(" ")),195,74);
 
         try{
             if(INDICE>=10)  g.drawImage(imagens[0],0,0,this);

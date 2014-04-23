@@ -3,13 +3,16 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.dialogs;
 
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.event.*;
+
+import org.ugosan.rox.Main;
 
 import java.io.*;
 
@@ -17,19 +20,19 @@ import java.io.*;
 *  O dialog que é mostrado quando se necessita adicionar mais imagens.
 * @author Ugo Braga Sangiorgi
 **/
-public class RoxImageChooser extends JFrame implements ActionListener, MouseListener, KeyListener{
+public class ImageChooser extends JFrame implements ActionListener, MouseListener, KeyListener{
     JList list_imagens;
     JScrollPane sp_list_imagens;
     JPanel panel_imagem;
     JLabel label_imagens;
     JButton button_adicionar;
     JButton button_ok;
-    RoxImageCache cache;
-    private static RoxImageChooser instance;
+    ImageCache cache;
+    private static ImageChooser instance;
     DefaultListModel listModel_list_imagens;
     private JFileChooser filechooser;
 
-    private RoxImageChooser() {
+    private ImageChooser() {
         RoxImageChooserLayout customLayout = new RoxImageChooserLayout();
 
 
@@ -61,7 +64,7 @@ public class RoxImageChooser extends JFrame implements ActionListener, MouseList
         button_ok.addActionListener(this);
         getContentPane().add(button_ok);
 
-        setIconImage(Rox.getInstance().getIconImage());
+        setIconImage(Main.getInstance().getIconImage());
         setSize(getPreferredSize());
         setTitle("Adicionar Imagens");
         addWindowListener(new WindowAdapter() {
@@ -71,10 +74,10 @@ public class RoxImageChooser extends JFrame implements ActionListener, MouseList
         });
     }
 
-     public static RoxImageChooser getInstance(){
+     public static ImageChooser getInstance(){
         try{
         if (instance==null){
-            instance = new RoxImageChooser();
+            instance = new ImageChooser();
             instance.setResizable(false);
         }
         }catch(Exception e){
@@ -90,7 +93,7 @@ public class RoxImageChooser extends JFrame implements ActionListener, MouseList
     }
 
     public void montaLista(){
-        cache = RoxImageCache.getInstance();
+        cache = ImageCache.getInstance();
         Object[] caminhos = cache.getAllKeys();
         listModel_list_imagens.removeAllElements();
 

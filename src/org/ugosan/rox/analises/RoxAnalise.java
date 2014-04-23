@@ -3,7 +3,7 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.analises;
 
 import org.ugosan.rox.grafo.*;
 

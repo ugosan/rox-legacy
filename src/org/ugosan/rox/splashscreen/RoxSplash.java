@@ -3,12 +3,12 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.splashscreen;
 
 import java.awt.*;
 import javax.swing.*;
 
-class RoxSplash extends JWindow
+public class RoxSplash extends JWindow
 {
 
     JTextField jt = new JTextField();

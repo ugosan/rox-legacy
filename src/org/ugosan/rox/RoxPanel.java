@@ -17,9 +17,9 @@ import org.ugosan.rox.grafo.*;
 import java.util.*;
 
 public class RoxPanel extends JPanel{
-    Properties p = Rox.p;
+    Properties p = Main.p;
     BufferedImage imagem;
-    Rox rox;
+    Main rox;
     RoxFrame roxframe;
 
     private boolean waitState;
@@ -57,7 +57,7 @@ public class RoxPanel extends JPanel{
     }
 
 
-    public RoxPanel(Rox _rox, RoxFrame _roxframe) throws Exception{
+    public RoxPanel(Main _rox, RoxFrame _roxframe) throws Exception{
         this.rox = _rox;
         this.roxframe = _roxframe;
 
@@ -74,7 +74,7 @@ public class RoxPanel extends JPanel{
     }
 
     public final void paintComponent(Graphics g){
-        rox = Rox.getInstance();
+        rox = Main.getInstance();
         milis = System.currentTimeMillis();
 
         super.paintComponent(g);
@@ -97,7 +97,7 @@ public class RoxPanel extends JPanel{
             g2.setColor(Color.LIGHT_GRAY);
             g2.drawLine(roxframe.vtemp1.getCentroX(),roxframe.vtemp1.getCentroY(),roxframe.mousex,roxframe.mousey);
         }else if(roxframe.colorindoAresta){
-            g2.setColor(Rox.cor_selecionada);
+            g2.setColor(Main.cor_selecionada);
             g2.drawLine(roxframe.vtemp1.getCentroX(),roxframe.vtemp1.getCentroY(),roxframe.mousex,roxframe.mousey);
         }else if(roxframe.removendoAresta){
 
@@ -175,12 +175,12 @@ public class RoxPanel extends JPanel{
         tdq = tdq_tmp;
        }
 
-       if(Rox.getInstance().roxframe.mostrarTDQ){
+       if(Main.getInstance().roxframe.mostrarTDQ){
         g2.setColor(new Color(240,240,240,160));
 
-        g2.fillRect(Rox.getInstance().getWidth()-217,Rox.getInstance().getHeight()-173,125,20);
+        g2.fillRect(Main.getInstance().getWidth()-217,Main.getInstance().getHeight()-173,125,20);
         g2.setColor(Color.BLACK);
-        g2.drawString(tdq+" "+p.getProperty("roxpanel.miliseconds"),Rox.getInstance().getWidth()-210,Rox.getInstance().getHeight()-160);
+        g2.drawString(tdq+" "+p.getProperty("roxpanel.miliseconds"),Main.getInstance().getWidth()-210,Main.getInstance().getHeight()-160);
 
 
        }

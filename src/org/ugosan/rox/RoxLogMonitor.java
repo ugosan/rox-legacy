@@ -28,11 +28,11 @@ public class RoxLogMonitor implements Runnable
 	private final PipedInputStream pin2=new PipedInputStream();
 
 
-    private Rox rox;
+    private Main rox;
 
 	public RoxLogMonitor()
 	{
-		rox = Rox.getInstance();
+		rox = Main.getInstance();
         try
 		{
 			PipedOutputStream pout=new PipedOutputStream(this.pin);

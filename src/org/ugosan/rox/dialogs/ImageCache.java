@@ -3,14 +3,20 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.dialogs;
 
 
 import java.io.*;
+
 import javax.imageio.*;
+
 import java.util.*;
 import java.awt.image.*;
+
 import javax.swing.*;
+
+import org.ugosan.rox.Main;
+import org.ugosan.rox.RoxMenu;
 /**
 *  Pelo fato de se poder adicionar qualquer imagem aos vértices, fez-se
 * necessário o uso de um cache para elas, economizando acessos ao disco
@@ -19,9 +25,9 @@ import javax.swing.*;
 * do RoxPopupMenu em RoxFrame.
 * @author Ugo Braga Sangiorgi
 **/
-public class RoxImageCache{
+public class ImageCache{
 
-    private static RoxImageCache instance;
+    private static ImageCache instance;
     private TreeMap cache;
     private RoxMenu menuImagens;
     private JMenuItem atualizarImagens;
@@ -29,7 +35,7 @@ public class RoxImageCache{
 
     private JFileChooser filechooser;
 
-    private RoxImageCache(){
+    private ImageCache(){
         cache = new TreeMap();
 
         /*
@@ -43,10 +49,10 @@ public class RoxImageCache{
     }
 
 
-    public static RoxImageCache getInstance(){
+    public static ImageCache getInstance(){
         try{
         if (instance==null){
-            instance = new RoxImageCache();
+            instance = new ImageCache();
         }
         }catch(Exception e){
             System.out.println("Impossivel instanciar RoxImageCache: "+e.getMessage());
@@ -149,7 +155,7 @@ public class RoxImageCache{
     public int showFileChooser(){
         int retorno = JFileChooser.CANCEL_OPTION;
         try{
-            retorno = this.filechooser.showOpenDialog(Rox.getInstance());
+            retorno = this.filechooser.showOpenDialog(Main.getInstance());
         }catch(Exception e){}
     return(retorno);
     }

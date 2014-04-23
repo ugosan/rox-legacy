@@ -32,9 +32,9 @@ public class RoxMatrizPanel extends JPanel{
         int x=22,y=50;
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        qtdVertices = Rox.getInstance().getGrafo().getQtdVertices();
+        qtdVertices = Main.getInstance().getGrafo().getQtdVertices();
         matrizAdjacencias = new int[qtdVertices][qtdVertices];
-        matrizAdjacencias = Rox.getInstance().getGrafo().getMatrizAdjacencias();
+        matrizAdjacencias = Main.getInstance().getGrafo().getMatrizAdjacencias();
         g2.drawString("Matriz de Adjacencias",x,y-10);
         for(int i=0;i<qtdVertices;i++){
             for(int j=0;j<qtdVertices;j++){
@@ -49,9 +49,9 @@ public class RoxMatrizPanel extends JPanel{
 
         x=22;
         y=y+20;
-        qtdArestas = Rox.getInstance().getGrafo().getQtdArestas();
+        qtdArestas = Main.getInstance().getGrafo().getQtdArestas();
         matrizIncidencias = new int[qtdVertices][qtdArestas];
-        matrizIncidencias = Rox.getInstance().getGrafo().getMatrizIncidencias();
+        matrizIncidencias = Main.getInstance().getGrafo().getMatrizIncidencias();
         g2.drawString("Matriz de Incidencias",x,y-10);
         for(int i=0;i<qtdVertices;i++){
             for(int j=0;j<qtdArestas;j++){

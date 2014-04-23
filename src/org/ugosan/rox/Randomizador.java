@@ -23,7 +23,7 @@ public class Randomizador {
         Grafo grafo = new Grafo();
 
         try{
-        Rox rox =  Rox.getInstance();
+        Main rox =  Main.getInstance();
 
         long seed = Calendar.getInstance().getTimeInMillis();
         Random rand = new Random(seed);

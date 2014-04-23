@@ -6,27 +6,64 @@
 
 package org.ugosan.rox;
 
-import com.l2fprod.gui.plaf.skin.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+import java.util.TreeMap;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
+import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import org.ugosan.rox.analises.RoxAnaliseExecutor;
+import org.ugosan.rox.analises.RoxAnaliseLoader;
+import org.ugosan.rox.dialogs.ImageCache;
+import org.ugosan.rox.dialogs.AboutDialog;
+import org.ugosan.rox.grafo.Digrafo;
+import org.ugosan.rox.grafo.Grafo;
+import org.ugosan.rox.splashscreen.RoxSplash;
+
+import com.l2fprod.gui.plaf.skin.SkinLookAndFeel;
 import com.l2fprod.util.OS;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.*;
-
-import javax.swing.*;
-import javax.imageio.*;
-
-import org.ugosan.rox.grafo.*;
 /**
 *  Classe principal representando o núcleo do Rox.
 * @author Ugo Braga Sangiorgi
 **/
-public class Rox extends JFrame implements ActionListener, MouseListener{
-  static String versao = "Rox 0.74";
-  static Properties p;      //propriedades gerais (dicionario) : <linguagem>.dic
-  static Properties conf;   //configurações: rox.properties
-  static PrintStream defaultPrintStream;
+public class Main extends JFrame implements ActionListener, MouseListener{
+  public static String versao = "Rox 0.74";
+  public static Properties p;      //propriedades gerais (dicionario) : <linguagem>.dic
+  public static Properties conf;   //configurações: rox.properties
+  public static PrintStream defaultPrintStream;
 
   private Map tools;
   private Map menus;
@@ -91,7 +128,7 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
   private JFileChooser filechooser;
   private JOptionPane optionPane;
 
-  private static Rox instance;
+  private static Main instance;
   private RoxMatrizPanel roxMatrizPanel;
 
   RoxFrame roxframe;
@@ -169,7 +206,7 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
         }
     }
 
-    private Rox()throws Exception{
+    private Main()throws Exception{
 
              this.setLingua(Locale.getDefault());
 
@@ -359,7 +396,7 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
         for(int i=0;i<icones.length;i++){
             icones[i] = System.getProperty("user.dir")+File.separator+"vertices"+File.separator +icones[i];
         }
-        RoxImageCache.getInstance().addAll(icones, true);
+        ImageCache.getInstance().addAll(icones, true);
 
 
         colorchooser = new JColorChooser();
@@ -479,7 +516,7 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
 
         filechooser.updateUI();
 
-        RoxImageCache cache = RoxImageCache.getInstance();
+        ImageCache cache = ImageCache.getInstance();
         cache.atualizarImagens();
 
 
@@ -496,8 +533,8 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
             }
 
         }catch(Exception e){
-            System.setOut(Rox.defaultPrintStream);
-            System.out.println(Rox.p.getProperty("out.failed"));
+            System.setOut(Main.defaultPrintStream);
+            System.out.println(Main.p.getProperty("out.failed"));
 
         }
 
@@ -517,13 +554,13 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
         this.grafo = new Grafo();
         this.roxframe.reset();
         System.gc();
-        this.roxframe.setTitle(Rox.p.getProperty("graph"));
+        this.roxframe.setTitle(Main.p.getProperty("graph"));
     }
     private void novoDigrafo(){
         this.grafo = new Digrafo();
         this.roxframe.reset();
         System.gc();
-        this.roxframe.setTitle(Rox.p.getProperty("digraph"));
+        this.roxframe.setTitle(Main.p.getProperty("digraph"));
     }
 
     /**Retorna a instancia da aplicação, o Rox não pode ser instanciado a
@@ -532,11 +569,11 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
      * <code>Rox.getInstance().getInput("Informe alguma coisa");</code>
      * @return a instancia do Rox
      **/
-    public static Rox getInstance(){
+    public static Main getInstance(){
 
         if (instance==null){
             try{
-                instance = new Rox();
+                instance = new Main();
             }catch(Exception e){
                 e.printStackTrace(System.out);
             }
@@ -681,7 +718,7 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
             }
 
         }else if(Source == itemSobre){
-            RoxSobreDialog dialog = new RoxSobreDialog();
+            AboutDialog dialog = new AboutDialog();
             dialog.pack();
             dialog.show();
             //JOptionPane.showMessageDialog(this,versao+p.getProperty("about.text"),p.getProperty("about.title"),1,new ImageIcon("img"+File.separator+"Rox_Sobre.jpg"));
@@ -848,8 +885,8 @@ public class Rox extends JFrame implements ActionListener, MouseListener{
     }
 
     public static void main(String[] args){
-        Rox rox = Rox.getInstance();
-        rox.setTitle(Rox.versao);
+        Main rox = Main.getInstance();
+        rox.setTitle(Main.versao);
         rox.setVisible(true);
 
       

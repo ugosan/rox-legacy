@@ -3,10 +3,11 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.analises;
 
 import javax.swing.*;
 
+import org.ugosan.rox.Main;
 import org.ugosan.rox.grafo.*;
 
 import java.awt.event.*;
@@ -97,7 +98,7 @@ public class RoxAnaliseCompilerChooser extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==button_6){
             this.dispose();
-            RoxAnaliseCompiler compilador = new RoxAnaliseCompiler(System.getProperty("user.dir"), Rox.conf.getProperty("analysis.prefix"));
+            RoxAnaliseCompiler compilador = new RoxAnaliseCompiler(System.getProperty("user.dir"), Main.conf.getProperty("analysis.prefix"));
             compilador.start();
         }else if(e.getSource()==button_4){
             this.dispose();
@@ -111,7 +112,7 @@ public class RoxAnaliseCompilerChooser extends JFrame implements ActionListener{
                 listModel_list_2.remove(listModel_list_2.indexOf(a[i]));
         }else if(e.getSource()==button_3){
 
-            RoxAnaliseCompiler compilador = new RoxAnaliseCompiler(System.getProperty("user.dir"), Rox.conf.getProperty("analysis.prefix"));
+            RoxAnaliseCompiler compilador = new RoxAnaliseCompiler(System.getProperty("user.dir"), Main.conf.getProperty("analysis.prefix"));
             String[] analises = new String[listModel_list_2.getSize()];
             listModel_list_2.copyInto(analises);
 

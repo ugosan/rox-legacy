@@ -3,11 +3,13 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.analises;
 
 
 import javax.swing.*;
 
+import org.ugosan.rox.Main;
+import org.ugosan.rox.RoxClassLoader;
 import org.ugosan.rox.grafo.*;
 
 import java.awt.event.*;
@@ -27,13 +29,13 @@ public class RoxAnaliseLoader implements ActionListener{
     private JMenuItem atualizarAnalises;
     private JMenuItem compilarAnalises;
 
-    private String prefixoAnalise = Rox.conf.getProperty("analysis.prefix");
+    private String prefixoAnalise = Main.conf.getProperty("analysis.prefix");
     private JMenuItem analise;
 
     protected TreeMap analises;
 
     public RoxAnaliseLoader(){
-        menuAnalises = new JMenu(Rox.p.getProperty("menu.2"));
+        menuAnalises = new JMenu(Main.p.getProperty("menu.2"));
         analises = new TreeMap();
     }
 
@@ -90,12 +92,12 @@ public class RoxAnaliseLoader implements ActionListener{
 
 
         if(atualizarAnalises ==null){
-            this.atualizarAnalises = new JMenuItem(Rox.p.getProperty("menu.2.1"));
+            this.atualizarAnalises = new JMenuItem(Main.p.getProperty("menu.2.1"));
             atualizarAnalises.addActionListener(this);
         }
 
         if(compilarAnalises ==null){
-            this.compilarAnalises = new JMenuItem(Rox.p.getProperty("analysis.compile"));
+            this.compilarAnalises = new JMenuItem(Main.p.getProperty("analysis.compile"));
             compilarAnalises.addActionListener(this);
         }
 
@@ -123,7 +125,7 @@ public class RoxAnaliseLoader implements ActionListener{
                 x++;
             }
         }
-         System.out.print(Rox.p.getProperty("analysis.loading")+"("+classes.length+")...[");
+         System.out.print(Main.p.getProperty("analysis.loading")+"("+classes.length+")...[");
 
          for(int i=0;i<classes.length;i++){
 
@@ -141,7 +143,7 @@ public class RoxAnaliseLoader implements ActionListener{
                 analise.addActionListener(new ActionListener(){
                     public final void actionPerformed(ActionEvent e){
                         try{
-                            Rox.getInstance().getRoxAnaliseExecutor().execAnalise(Rox.getInstance().getGrafo(),novaAnalise);
+                            Main.getInstance().getRoxAnaliseExecutor().execAnalise(Main.getInstance().getGrafo(),novaAnalise);
                         }catch(Exception ex){
                             System.out.println("sux!]");
                             System.out.println("Rox não pode ser instanciado / cannot instantiate Rox");

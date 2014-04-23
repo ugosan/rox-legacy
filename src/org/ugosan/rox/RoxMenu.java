@@ -10,6 +10,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import org.ugosan.rox.dialogs.ImageCache;
+import org.ugosan.rox.dialogs.ImageChooser;
 import org.ugosan.rox.grafo.*;
 
 import java.io.File;
@@ -37,11 +39,11 @@ public class RoxMenu extends JMenu implements MouseListener{
         try{
             JMenuItem item = (JMenuItem)e.getSource();
             if(item.getName().equalsIgnoreCase("Atualizar Imagens...")){
-                RoxImageCache.getInstance().atualizarImagens();
+                ImageCache.getInstance().atualizarImagens();
 
 
             }else if(item.getName().equalsIgnoreCase("Adicionar Imagens...")){
-                RoxImageChooser chooser = RoxImageChooser.getInstance();
+                ImageChooser chooser = ImageChooser.getInstance();
                 //chooser.setVisible(true);
 
             }else{
@@ -49,7 +51,7 @@ public class RoxMenu extends JMenu implements MouseListener{
                     vertice.setNome_interno(true);
                 }else vertice.setNome_interno(false);
                 vertice.setImagem(item.getName());
-                Rox.getInstance().repaint();
+                Main.getInstance().repaint();
 
 
 

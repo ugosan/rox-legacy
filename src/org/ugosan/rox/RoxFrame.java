@@ -12,6 +12,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import org.ugosan.rox.dialogs.ImageCache;
+import org.ugosan.rox.dialogs.EditNodeTextField;
 import org.ugosan.rox.grafo.*;
 
 import java.util.*;
@@ -27,7 +29,7 @@ import java.io.*;
 **/
 public class RoxFrame extends JInternalFrame implements MouseInputListener{
     RoxPanel panel;
-    Rox rox;
+    Main rox;
 
     Vertice mov;
     Aresta novaAresta;
@@ -60,18 +62,18 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
 
         getContentPane().add(panel);
 
-        if(Rox.conf.getProperty("options.showm").equals("1")) mostrarMatrizes = true;
+        if(Main.conf.getProperty("options.showm").equals("1")) mostrarMatrizes = true;
         else mostrarMatrizes = false;
 
-        if(Rox.conf.getProperty("options.showFT").equals("1")) mostrarTDQ = true;
+        if(Main.conf.getProperty("options.showFT").equals("1")) mostrarTDQ = true;
         else mostrarTDQ = false;
 
-        if(Rox.conf.getProperty("options.optimization").equals("1")) ativarOtimizacao = true;
+        if(Main.conf.getProperty("options.optimization").equals("1")) ativarOtimizacao = true;
         else ativarOtimizacao = false;
 
-        Rox.itemOpcoesMatrizes.setSelected(mostrarMatrizes);
-        Rox.itemOpcoesOtimizacao.setSelected(ativarOtimizacao);
-        Rox.itemOpcoesTDQ.setSelected(mostrarTDQ);
+        Main.itemOpcoesMatrizes.setSelected(mostrarMatrizes);
+        Main.itemOpcoesOtimizacao.setSelected(ativarOtimizacao);
+        Main.itemOpcoesTDQ.setSelected(mostrarTDQ);
 
     }
 
@@ -100,48 +102,48 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
          if(!e.isControlDown()){
             if(e.getButton()==e.BUTTON1){
 
-            if(rox.acao_selecionada==Rox.CRIAR_VERTICE){
-                Rox.getInstance().getGrafo().addVertice(e.getX()-10,e.getY()-10);
+            if(rox.acao_selecionada==Main.CRIAR_VERTICE){
+                Main.getInstance().getGrafo().addVertice(e.getX()-10,e.getY()-10);
                 this.repaint();
-            }else if(rox.acao_selecionada==Rox.APAGAR_VERTICE){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
-                if(nomevertice!=-1) Rox.getInstance().getGrafo().delVerticeByNome(nomevertice);
+            }else if(rox.acao_selecionada==Main.APAGAR_VERTICE){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+                if(nomevertice!=-1) Main.getInstance().getGrafo().delVerticeByNome(nomevertice);
                 this.repaint();
-            }else if(rox.acao_selecionada==Rox.CRIAR_ARESTA){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+            }else if(rox.acao_selecionada==Main.CRIAR_ARESTA){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if(nomevertice!=-1) {
 
-                    if(( vtemp2 != null )&&( vtemp2 != Rox.getInstance().getGrafo().getVerticeByNome(nomevertice) )){ //não permite laço
-                        Rox.getInstance().getGrafo().addAresta(vtemp2,Rox.getInstance().getGrafo().getVerticeByNome(nomevertice));
+                    if(( vtemp2 != null )&&( vtemp2 != Main.getInstance().getGrafo().getVerticeByNome(nomevertice) )){ //não permite laço
+                        Main.getInstance().getGrafo().addAresta(vtemp2,Main.getInstance().getGrafo().getVerticeByNome(nomevertice));
                         vtemp1 = vtemp2;
-                        vtemp2 = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                        vtemp2 = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
                     }
                 }
                 this.repaint();
             }
-            else if(rox.acao_selecionada==Rox.COLORIR_ARESTA){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+            else if(rox.acao_selecionada==Main.COLORIR_ARESTA){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if(nomevertice!=-1) {
 
-                    if(( vtemp2 != null )&&( vtemp2 != Rox.getInstance().getGrafo().getVerticeByNome(nomevertice) )){ //não permite laço
-                        Aresta a = Rox.getInstance().getGrafo().getArestaEntreVertices(vtemp2,Rox.getInstance().getGrafo().getVerticeByNome(nomevertice));
+                    if(( vtemp2 != null )&&( vtemp2 != Main.getInstance().getGrafo().getVerticeByNome(nomevertice) )){ //não permite laço
+                        Aresta a = Main.getInstance().getGrafo().getArestaEntreVertices(vtemp2,Main.getInstance().getGrafo().getVerticeByNome(nomevertice));
                         if(a != null) a.setCor(rox.cor_selecionada);
                         vtemp1 = vtemp2;
-                        vtemp2 = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                        vtemp2 = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
                     }
                  }
                  this.repaint();
-            }else if(rox.acao_selecionada==Rox.COLORIR_VERTICE){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
-                if(nomevertice!=-1) Rox.getInstance().getGrafo().getVerticeByNome(nomevertice).setCor(rox.cor_selecionada);
+            }else if(rox.acao_selecionada==Main.COLORIR_VERTICE){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+                if(nomevertice!=-1) Main.getInstance().getGrafo().getVerticeByNome(nomevertice).setCor(rox.cor_selecionada);
                 this.repaint();
             }
 
             }else if((e.getButton()==e.BUTTON3)||(e.getButton()==e.BUTTON2)){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if(nomevertice!=-1)
                     try{
-                    this.showPopupMenu(e.getX(),e.getY(),Rox.getInstance().getGrafo().getVerticeByNome(nomevertice));
+                    this.showPopupMenu(e.getX(),e.getY(),Main.getInstance().getGrafo().getVerticeByNome(nomevertice));
                     }catch(Exception ex){
                     ex.printStackTrace();
                     }
@@ -152,7 +154,7 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
 
             if(e.getClickCount()==10){
                 try{
-                    Rox.getInstance().itemNovoDigrafo.setEnabled(true);
+                    Main.getInstance().itemNovoDigrafo.setEnabled(true);
                     JOptionPane.showMessageDialog(this,"Digrafo Habilitado, seu cheater ","Cheat r0x >:)",1);
                 }catch(Exception ex){}
             }
@@ -162,20 +164,20 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
 	}
 
     public final void mousePressed(MouseEvent e) {
-        if (e.isControlDown()||rox.acao_selecionada==Rox.MOVER){
+        if (e.isControlDown()||rox.acao_selecionada==Main.MOVER){
 
-            int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+            int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
             if(nomevertice!=-1){
-                mov = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                mov = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
 
             }
         }else{
 
-        if(rox.acao_selecionada==Rox.CRIAR_ARESTA){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+        if(rox.acao_selecionada==Main.CRIAR_ARESTA){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if(nomevertice!=-1){
                     if(!criandoAresta){
-                        vtemp1 = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                        vtemp1 = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
                         criandoAresta=true;
                     }
                 }
@@ -183,11 +185,11 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
             return;
 
         }
-        if(rox.acao_selecionada==Rox.APAGAR_ARESTA){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+        if(rox.acao_selecionada==Main.APAGAR_ARESTA){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if(nomevertice!=-1){
                     if(!removendoAresta){
-                        vtemp1 = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                        vtemp1 = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
                         removendoAresta=true;
                     }
                 }
@@ -195,11 +197,11 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
             return;
 
         }
-        if(rox.acao_selecionada==Rox.COLORIR_ARESTA){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+        if(rox.acao_selecionada==Main.COLORIR_ARESTA){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if(nomevertice!=-1){
                     if(!colorindoAresta){
-                        vtemp1 = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                        vtemp1 = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
                         colorindoAresta=true;
                     }
                 }
@@ -212,26 +214,26 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
     }
 
     public final void mouseReleased(MouseEvent e) {
-            if((rox.acao_selecionada==Rox.CRIAR_ARESTA)&&(criandoAresta)){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+            if((rox.acao_selecionada==Main.CRIAR_ARESTA)&&(criandoAresta)){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if((nomevertice!=-1)&&(nomevertice!=vtemp1.getNome())){ //não permite laço
-                    vtemp2 = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
-                    Rox.getInstance().getGrafo().addAresta(vtemp1,vtemp2);
+                    vtemp2 = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                    Main.getInstance().getGrafo().addAresta(vtemp1,vtemp2);
                 }
             }
-            if((rox.acao_selecionada==Rox.COLORIR_ARESTA)&&(colorindoAresta)){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+            if((rox.acao_selecionada==Main.COLORIR_ARESTA)&&(colorindoAresta)){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if((nomevertice!=-1)&&(nomevertice!=vtemp1.getNome())){ //não permite laço
-                    vtemp2 = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
-                    Aresta a = Rox.getInstance().getGrafo().getArestaEntreVertices(vtemp1,vtemp2);
+                    vtemp2 = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                    Aresta a = Main.getInstance().getGrafo().getArestaEntreVertices(vtemp1,vtemp2);
                     if(a!=null) a.setCor(rox.cor_selecionada);
                 }
             }
-            if((rox.acao_selecionada==Rox.APAGAR_ARESTA)&&(removendoAresta)){
-                int nomevertice = Rox.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
+            if((rox.acao_selecionada==Main.APAGAR_ARESTA)&&(removendoAresta)){
+                int nomevertice = Main.getInstance().getGrafo().existeVertice(e.getX(),e.getY());
                 if((nomevertice!=-1)&&(nomevertice!=vtemp1.getNome())){
-                    vtemp2 = Rox.getInstance().getGrafo().getVerticeByNome(nomevertice);
-                    Rox.getInstance().getGrafo().delAresta(vtemp1,vtemp2);
+                    vtemp2 = Main.getInstance().getGrafo().getVerticeByNome(nomevertice);
+                    Main.getInstance().getGrafo().delAresta(vtemp1,vtemp2);
                 }
             }
 
@@ -245,7 +247,7 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
     }
 
     public final void mouseDragged(MouseEvent e) {
-        if(e.isControlDown()||rox.acao_selecionada==Rox.MOVER){
+        if(e.isControlDown()||rox.acao_selecionada==Main.MOVER){
             if(mov!=null){
                 movendoVertice = true;
                 criandoAresta=false;
@@ -268,7 +270,7 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
             mousey=e.getY();
               */
         }else{
-            if((rox.acao_selecionada==Rox.CRIAR_ARESTA)||(rox.acao_selecionada==Rox.APAGAR_ARESTA)||(rox.acao_selecionada==Rox.COLORIR_ARESTA)){
+            if((rox.acao_selecionada==Main.CRIAR_ARESTA)||(rox.acao_selecionada==Main.APAGAR_ARESTA)||(rox.acao_selecionada==Main.COLORIR_ARESTA)){
                 mousex=e.getX();
                 mousey=e.getY();
                 this.repaint();
@@ -283,10 +285,10 @@ public class RoxFrame extends JInternalFrame implements MouseInputListener{
     public final void showPopupMenu(int x, int y, Vertice v) throws Exception{
 
 
-        RoxMenu menuImagens = RoxImageCache.getInstance().getMenuImagens();
+        RoxMenu menuImagens = ImageCache.getInstance().getMenuImagens();
         menuImagens.setVertice(v);
 
-        RoxVerticeTextField verticeTextField = new RoxVerticeTextField(v);
+        EditNodeTextField verticeTextField = new EditNodeTextField(v);
 
 
         popup.removeAll();

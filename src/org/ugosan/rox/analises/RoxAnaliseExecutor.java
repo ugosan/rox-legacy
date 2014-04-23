@@ -3,10 +3,11 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.analises;
 
 import javax.swing.*;
 
+import org.ugosan.rox.Main;
 import org.ugosan.rox.grafo.*;
 
 import java.util.*;
@@ -62,7 +63,7 @@ public class RoxAnaliseExecutor implements Runnable{
     }
       */
     public void run(){
-        Rox rox = Rox.getInstance();
+        Main rox = Main.getInstance();
 
         try{
             rox.setWaitState(true);
@@ -135,11 +136,11 @@ public class RoxAnaliseExecutor implements Runnable{
                 if(status == 0){
                     RoxAnalise analise = loader.getAnalise(nomeAnalise);
                     ultimaAnalise = analise;
-                    this.execAnalise(Rox.getInstance().getGrafo(),ultimaAnalise);
-                }else Rox.getInstance().selectTabpane(2);
+                    this.execAnalise(Main.getInstance().getGrafo(),ultimaAnalise);
+                }else Main.getInstance().selectTabpane(2);
 
             }catch(Exception e){
-                System.out.println(Rox.p.getProperty("analysis.cantexecute"));
+                System.out.println(Main.p.getProperty("analysis.cantexecute"));
                 e.printStackTrace(System.out);
             }
         }

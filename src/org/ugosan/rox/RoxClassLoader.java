@@ -32,7 +32,7 @@ public class RoxClassLoader extends ClassLoader
    *  Construtor para instância relativa à outro ClassLoader pré-existente.
    *
    */
-  RoxClassLoader(ClassLoader parent)
+  public RoxClassLoader(ClassLoader parent)
   {
     super(parent);
     init();
@@ -85,7 +85,7 @@ public class RoxClassLoader extends ClassLoader
    * @return objeto &lt;code&gt;Class&lt;/code&gt; resultante
    * @exception ClassNotFoundException se nada foi encontrado
    */
-  protected Class findClass(String name) throws ClassNotFoundException
+  public Class findClass(String name) throws ClassNotFoundException
   {
     FileInputStream fi = null;
 
@@ -120,7 +120,7 @@ public class RoxClassLoader extends ClassLoader
       }
     }
   }
-    protected void preparaClasse(String classe) {
+    public void preparaClasse(String classe) {
         try{
         File arquivo = new File(classe);
         File imp = new File("store"+File.separator+classe);

@@ -3,7 +3,7 @@
     Copyright (C) 2003  Ugo Braga Sangiorgi
     A licensa completa se encontra no diretório-raiz em gpl.txt
 */
-package org.ugosan.rox;
+package org.ugosan.rox.analises;
 
 import javax.swing.*;
 import javax.tools.JavaCompiler;
@@ -11,6 +11,7 @@ import javax.tools.JavaFileObject;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
+import org.ugosan.rox.Main;
 import org.ugosan.rox.grafo.*;
 
 import java.awt.event.*;
@@ -37,7 +38,7 @@ public class RoxAnaliseCompiler implements Runnable{
     public RoxAnaliseCompiler(){
 
         this.dir = System.getProperty("user.dir");
-        this.prefixo = Rox.conf.getProperty("analysis.prefix");
+        this.prefixo = Main.conf.getProperty("analysis.prefix");
 
         pw = new PrintWriter(System.out);
     }
@@ -68,7 +69,7 @@ public class RoxAnaliseCompiler implements Runnable{
 
     public void run(){
 
-        Rox.getInstance().selectTabpane(2);
+        Main.getInstance().selectTabpane(2);
 
         if(arquivos == null)
             arquivos = new File(dir).list();

@@ -43,7 +43,7 @@ public class Grafo implements
         arestas = new ArrayList();
         this.ehDigrafo = false;
         try{
-            Rox rox = Rox.getInstance();
+            Main rox = Main.getInstance();
             Random rand = new Random(System.currentTimeMillis());
             //cria vertices
             for (int i=0;i<matrizAdjacencias.length;i++) {

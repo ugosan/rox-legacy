@@ -10,6 +10,7 @@ import java.lang.*;
 import javax.imageio.*;
 
 import org.ugosan.rox.*;
+import org.ugosan.rox.dialogs.ImageCache;
 
 import java.awt.image.*;
 import java.awt.*;
@@ -140,7 +141,7 @@ public class Vertice implements
     **/
     public BufferedImage getImagem(){
         BufferedImage imagem = null;
-        imagem = RoxImageCache.getInstance().getImagem(caminho_imagem);
+        imagem = ImageCache.getInstance().getImagem(caminho_imagem);
         this.altura_imagem = imagem.getHeight();
         this.largura_imagem = imagem.getWidth();
 
@@ -153,7 +154,7 @@ public class Vertice implements
     public void setImagem(String caminho){
         BufferedImage imagem;
 
-            imagem = RoxImageCache.getInstance().getImagem(caminho);
+            imagem = ImageCache.getInstance().getImagem(caminho);
             this.altura_imagem = imagem.getHeight();
             this.largura_imagem = imagem.getWidth();
 
